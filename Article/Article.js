@@ -84,8 +84,27 @@ const data = [
 
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
-          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor...Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+  title: 'Professional Software Development in 2019',
+  date: 'Jan 1st, 2019',
+  firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+        hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+        Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+  secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+        hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+        hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+        hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+  thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+        Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+        Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  
+}
+
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -112,3 +131,48 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createComponent(data) {
+  const articleDiv = document.createElement('div');
+  const title = document.createElement('h2');
+  const pDate = document.createElement('p');
+  const pElement1 = document.createElement('p');
+  const pElement2 = document.createElement('p');
+  const pElement3 = document.createElement('p');
+  const spanElement = document.createElement('button');
+
+  articleDiv.classList.add('article');
+  pDate.classList.add('date');
+  spanElement.classList.add('expandButton');
+ 
+
+  articleDiv.appendChild(title);
+  articleDiv.appendChild(pDate);
+  articleDiv.appendChild(pElement1);
+  articleDiv.appendChild(pElement2);
+  articleDiv.appendChild(pElement3);
+  
+  articleDiv.appendChild(spanElement);
+
+  title.textContent = data.title;
+  pDate.textContent = data.date;
+  pElement1.textContent = data.firstParagraph;
+  pElement2.textContent = data.secondParagraph;
+  pElement3.textContent = data.thirdParagraph;
+  spanElement.textContent = "Expand";
+  
+  //Add an event listener to the expandButton
+  spanElement.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open');
+  
+  })
+//Return the entire component
+return articleDiv;
+}
+const container = document.querySelector('.articles');
+data.forEach(data => {
+  container.appendChild(createComponent(data));
+});
+
+
+
