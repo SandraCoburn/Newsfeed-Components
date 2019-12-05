@@ -34,46 +34,31 @@ let menuItems = [
   
 */
 
-function createMenu(menuItems) {
+function createMenu(menu) {
   const menuDiv = document.createElement('div');
   const uList = document.createElement('ul');
-  const listStudents = document.createElement('li');
-  const listFaculty = document.createElement('li');
-  const listWhats = document.createElement('li');
-  const listTech = document.createElement('li');
-  const listMusic = document.createElement('li');
-  const listLogOut = document.createElement('li');
 
-  //menu button 
-  const menuButton = document.querySelector('.menu-button');
-  menuButton.addEventListener('click', event => {
-    menuButton.classList.toggle('menu--open');
-  })
-
-  menuButton.classList.add('menu-button');
   menuDiv.classList.add('menu');
-
- 
   menuDiv.appendChild(uList);
-  uList.appendChild(listStudents);
-  uList.appendChild(listFaculty);
-  uList.appendChild(listWhats);
-  uList.appendChild(listTech);
-  uList.appendChild(listMusic);
-  uList.appendChild(listLogOut);
+ 
+   //Create a new list item
+ menu.forEach((item) => {
+  const list = document.createElement('li');
+  list.textContent = item;
+  uList.appendChild(list);
+});
 
+  //menu button and eventListener
+  const menuButton = document.querySelector('.menu-button');
+  menuButton.addEventListener('click', () => {
+    menuDiv.classList.toggle('menu--open');
+  });
 
-  listStudents.textContent = menuItems[0];
-  listFaculty.textContent = menuItems[1];
-
-
-  
 
 
   return menuDiv;
 }
 
-const container1 = document.querySelector('.container');
-menuItems.forEach(data => {
-  container1.appendChild(createMenu(data));
-})
+const header = document.querySelector('.header');
+
+header.appendChild(createMenu(menuItems));
